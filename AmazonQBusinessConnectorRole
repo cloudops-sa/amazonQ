@@ -1,0 +1,26 @@
+# Trust Policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowsAmazonQToAssumeRoleForServicePrincipal",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "qbusiness.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceAccount": "<account-id>"
+                },
+                "ArnLike": {
+                    "aws:SourceArn": "arn:aws:qbusiness:us-east-1:<account-id>:application/*"
+                }
+            }
+        }
+    ]
+}
+
+#Permissions 
+AmazonQBusinessConnectPolicy
