@@ -1,0 +1,30 @@
+# Trust Policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "QBusinessTrustPolicy",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "application.qbusiness.amazonaws.com"
+            },
+            "Action": [
+                "sts:AssumeRole",
+                "sts:SetContext"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceAccount": "<account-id>"
+                },
+                "ArnEquals": {
+                    "aws:SourceArn": "arn:aws:qbusiness:us-east-1:<account-id>:application/*"
+                }
+            }
+        }
+    ]
+}
+
+# Permissions
+
+AmazonQBusinessWebexpPolicy
