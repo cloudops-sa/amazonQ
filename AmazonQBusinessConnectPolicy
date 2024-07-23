@@ -1,0 +1,30 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowsAmazonQToIngestDocuments",
+            "Effect": "Allow",
+            "Action": [
+                "qbusiness:BatchPutDocument",
+                "qbusiness:BatchDeleteDocument"
+            ],
+            "Resource": "arn:aws:qbusiness:us-east-1:<account-id>:application/*/index/*"
+        },
+        {
+            "Sid": "AllowsAmazonQToIngestPrincipalMapping",
+            "Effect": "Allow",
+            "Action": [
+                "qbusiness:PutGroup",
+                "qbusiness:CreateUser",
+                "qbusiness:DeleteGroup",
+                "qbusiness:UpdateUser",
+                "qbusiness:ListGroups"
+            ],
+            "Resource": [
+                "arn:aws:qbusiness:us-east-1:<account-id>:application/*",
+                "arn:aws:qbusiness:us-east-1:<account-id>:application/*/index/*",
+                "arn:aws:qbusiness:us-east-1:<account-id>:application/*/index/*/data-source/*"
+            ]
+        }
+    ]
+}
