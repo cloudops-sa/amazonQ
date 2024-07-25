@@ -1,0 +1,56 @@
+{
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "QBusinessConversationPermission",
+                "Effect": "Allow",
+                "Action": [
+                    "qbusiness:Chat",
+                    "qbusiness:ChatSync",
+                    "qbusiness:ListMessages",
+                    "qbusiness:ListConversations",
+                    "qbusiness:DeleteConversation",
+                    "qbusiness:PutFeedback",
+                    "qbusiness:GetWebExperience",
+                    "qbusiness:GetApplication",
+                    "qbusiness:ListPlugins",
+                    "qbusiness:GetChatControlsConfiguration"
+                ],
+                "Resource": "arn:aws:qbusiness:{{region}}:{{source_account}}:application/{{application_id}}"
+            },
+            {
+                "Sid": "QBusinessKMSDecryptPermissions",
+                "Effect": "Allow",
+                "Action": [
+                    "kms:Decrypt"
+                ],
+                "Resource": [
+                    "arn:aws:kms:{{region}}:{{account_id}}:key/[[key_id]]"
+                ],
+                "Condition": {
+                    "StringLike": {
+                        "kms:ViaService": [
+                            "qbusiness.{{region}}.amazonaws.com"
+                        ]
+                    }
+                }
+            },
+            {
+                "Sid": "QBusinessSetContextPermissions",
+                "Effect": "Allow",
+                "Action": [
+                    "sts:SetContext"
+                ],
+                "Resource": [
+                    "arn:aws:sts::*:self"
+                ],
+                "Condition": {
+                    "StringLike": {
+                        "aws:CalledViaLast": [
+                            "qbusiness.amazonaws.com"
+                        ]
+                    }
+                }
+            }
+        ]
+    }
